@@ -37,7 +37,7 @@ function setup() {
   canvas.mouseReleased(classifyCanvas);
   // Create a clear canvas button
   let button = createButton("Clear Canvas");
-  button.position(7, 250);
+  button.position(7, 370);
   button.mousePressed(clearCanvas);
   // Create 'label' and 'confidence' div to hold results
   label = createDiv("Label: ...");
