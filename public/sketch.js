@@ -1,30 +1,32 @@
 // NOTE: STEP4
-// Initialize the Image Classifier method with DoodleNet.
 let classifier;
-
-// A variable to hold the canvas image we want to classify
 let canvas;
-
-// Two variable to hold the label and confidence of the result
 let label;
 let confidence;
 let defaultBackgroundColor = 150;
+
 /**
- * Called directly before setup(), the preload() function is used to handle asynchronous loading of external files in a blocking way. If a preload function is defined, setup() will wait until any load calls within have finished.
+ * Called directly before setup(),
+ * the preload() function is used to handle asynchronous loading of external files in a blocking way.
+ * If a preload function is defined,
+ * setup() will wait until any load calls within have finished.
  */
 function preload() {
   // Load the DoodleNet Image Classification model
   classifier = ml5.imageClassifier("DoodleNet");
 }
 
+// create the canvas
 function setup() {
-  // Create a canvas with 280 x 280 px
+  // Create a canvas with 300 x 300 px
   canvas = createCanvas(300, 300);
   // Set canvas background to white
   // NOTE: For a grayscale images, the pixel value is a single number that represents the brightness of the pixel. The most common pixel format is the byte image, where this number is stored as an 8-bit integer giving a range of possible values from 0 to 255. Typically zero is taken to be black, and 255 is taken to be white.
   background(defaultBackgroundColor);
-  // Whenever mouseReleased event happens on canvas, call "classifyCanvas" function
+
   canvas.mouseReleased(classifyCanvas);
+
+  ///////////////////// NOTE: work on last
   // Create a clear canvas button
   let button = createButton("Clear Canvas");
   button.position(7, 370);
@@ -34,13 +36,11 @@ function setup() {
   confidence = createDiv("Confidence: ...");
 }
 
-const clearCanvas = () => {
-  background(defaultBackgroundColor);
-  label.html("Label: ");
-  confidence.html("Confidence: ");
-};
-
-// NOTE: Called directly after setup(), the draw() function continuously executes the lines of code contained inside its block until the program is stopped
+/**
+ * NOTE: Called directly after setup(),
+ * the draw() function continuously executes the lines of code contained inside its block
+ * until the program is stopped
+ */
 function draw() {
   // Set stroke weight to 10
   strokeWeight(15);
@@ -52,6 +52,7 @@ function draw() {
   }
 }
 
+// NOTE: CALLBACK functions
 function classifyCanvas() {
   classifier.classify(canvas, gotResult);
 }
@@ -64,7 +65,17 @@ function gotResult(error, results) {
   }
   // The results are in an array ordered by confidence.
   console.log(results);
+
+  ////////// NOTE: work on last
   // Show the first label and confidence
   label.html("Label: " + results[0].label);
+  // nf - Utility function for formatting numbers into strings.
   confidence.html("Confidence: " + nf(results[0].confidence, 0, 2)); // Round the confidence to 0.01
 }
+
+////////// NOTE: work on last
+const clearCanvas = () => {
+  background(defaultBackgroundColor);
+  label.html("Label: ");
+  confidence.html("Confidence: ");
+};
