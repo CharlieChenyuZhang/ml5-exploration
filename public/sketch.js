@@ -1,15 +1,4 @@
 // NOTE: STEP4
-// Copyright (c) 2019 ml5
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
-
-/* ===
-ml5 Example
-Canvas Image Classification using DoodleNet and p5.js
-This example uses a callback pattern to create the classifier
-=== */
-
 // Initialize the Image Classifier method with DoodleNet.
 let classifier;
 
